@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import { ArrowLeft, MapPin, Calendar, Users, ThumbsUp, Building2, AlertTriangle, Clock } from 'lucide-react'
-import api from '../services/api'
+import api, { assetUrl } from '../services/api'
 import { STATUS_COLORS, SEVERITY_COLORS, CATEGORY_ICONS } from '../utils/constants'
 import { format, formatDistanceToNow } from 'date-fns'
 import toast from 'react-hot-toast'
@@ -137,8 +137,8 @@ export default function ComplaintDetailPage() {
               <h2 className="font-semibold text-slate-800 mb-3">Photos</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {c.images.map((img, i) => (
-                  <a key={i} href={img} target="_blank" rel="noreferrer">
-                    <img src={img} alt={`complaint-${i}`} className="rounded-xl object-cover w-full h-32 hover:opacity-90 transition-opacity" />
+                  <a key={i} href={assetUrl(img)} target="_blank" rel="noreferrer">
+                    <img src={assetUrl(img)} alt={`complaint-${i}`} className="rounded-xl object-cover w-full h-32 hover:opacity-90 transition-opacity" />
                   </a>
                 ))}
               </div>
