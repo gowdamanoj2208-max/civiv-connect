@@ -1,7 +1,14 @@
 import axios from 'axios'
 
+const apiOrigin = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '')
+
+export const assetUrl = (path) => {
+  if (!path || /^https?:\/\//i.test(path)) return path
+  return apiOrigin ? apiOrigin + (path.startsWith('/') ? '' : '/') + path : path
+}
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: apiOrigin ? apiOrigin + '/api' : '/api',
   timeout: 15000,
 })
 
